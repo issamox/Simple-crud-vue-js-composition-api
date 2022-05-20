@@ -31,7 +31,7 @@
             </thead>
 
             <tbody class="bg-white divide-y divide-gray-200 divide-solid">
-            <template v-for="item in companies" :key="item.id">
+            <template v-for="item in companies.data" :key="item.id">
                 <tr class="bg-white">
                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                         {{ item.name }}
@@ -57,6 +57,9 @@
             </template>
             </tbody>
         </table>
+
+        <Pagination :data="companies" @pagination-change-page="getCompanies" />
+
     </div>
 </template>
 <script>
@@ -80,6 +83,7 @@ export default {
 
         return {
             companies,
+            getCompanies,
             deleteCompany
         }
     }

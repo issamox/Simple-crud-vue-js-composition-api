@@ -8,10 +8,20 @@ export default function useCompanies(){
     const router    = useRouter();
     const errors    = ref('');
 
-    const getCompanies   = async () => {
-     let response    = await axios.get('/api/companies');
+    /*const getCompanies   = async (page) => {
+     let response    = await axios.get('/api/companies?page='+page);
      companies.value = response.data.data;
+    }*/
+
+
+    const getCompanies = async(page) => {
+        axios.get('/api/companies?page=' + page)
+            .then(response => {
+                companies.value = response.data
+            })
+
     }
+
 
     const getCompany     = async (id) => {
         let response = await axios.get('/api/companies/' + id)
